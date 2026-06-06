@@ -1,31 +1,10 @@
 # ArduLink-TI89
 
-An Arduino Nano-based hardware emulator designed specifically to connect the classic **Texas Instruments TI-89 (Non-Titanium)** calculator to PC connectivity software such as **TiLP.
+An Arduino Nano-based hardware emulator designed specifically to connect the classic **Texas Instruments TI-89 (Non-Titanium)** calculator to PC connectivity software such as TiLP.
 
 This project functions as a clone of the **GrayLink** cable, using an Arduino Nano to handle the translation layer natively without requiring the obsolete DB9 serial port.
 
 ---
-
-| Jack port     | Arduino       |
-|:-------------:|:-------------:|
-| sleeve        | GND pin       |
-| tip           | pin 2         |
-| ring          | pin 3         |
-
----
-
-_Optional_: before uploading `serial2ti83.ino` it is recommended to increase the size of hardware serial buffers to make the connection more reliable. Open `HardwareSerial.h` from you Arduino installation folder (usually `C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino`) and change these 2 lines:
-
-    #define SERIAL_TX_BUFFER_SIZE 64
-    #define SERIAL_RX_BUFFER_SIZE 64
-
-to:
-
-    #define SERIAL_TX_BUFFER_SIZE 256
-    #define SERIAL_RX_BUFFER_SIZE 256
-
----
-
 
 ## 📐 Mathematical Model & Logical Transparency
 
