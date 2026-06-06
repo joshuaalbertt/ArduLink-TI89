@@ -1,28 +1,16 @@
-# ArduLink-TI89 🚀
+# ArduLink-TI89
 
-An Arduino-based hardware link cable emulator designed specifically to bridge classic **Texas Instruments TI-89 (Non-Titanium / Homeboard)** calculators with PC link software like **TiLP (TI Linux Link Program)**.
+An Arduino Nano-based hardware emulator designed specifically to connect the classic **Texas Instruments TI-89 (Non-Titanium)** calculator to PC connectivity software such as **TiLP.
 
-This project acts as an automated **GrayLink** cable clone, using an Arduino Nano to handle the translation layers natively without requiring deprecated DB9 serial ports.
-
----
-
-## 📸 Visualized Architecture: The Data Tollroad
-
-Imagine this firmware as a **Customs Checkpoint with a Large Warehouse**. The TI-89 dumps its OS/ROM data like a massive fleet of trucks. If your warehouse is too small, the boxes spill into the street and get lost. By expanding the buffer, we build a massive storage facility that ensures every byte is safely stacked before being processed by the PC.
-
-[ PC (TiLP Software) ]
-│
-(USB Cable / Virtual COM Port)
-▼
-[ Arduino Nano (ATmega328P) ] ───► [ 256-Byte RX Buffer Forced ]
-├── Pin D2 (lineRed)   ─── (TIP)   ───► [ 2.5 mm Sub-Mini  ]
-├── Pin D3 (lineWhite) ─── (RING)  ───► [ Stereo Audio Jack]
-└── Pin GND            ─── (SLEEVE)───► [ Connection       ]
-│
-▼
-[ TI-89 ]
+This project functions as a clone of the **GrayLink** cable, using an Arduino Nano to handle the translation layer natively without requiring the obsolete DB9 serial port.
 
 ---
+
+| Jack port     | Arduino       |
+|:-------------:|:-------------:|
+| sleeve        | GND pin       |
+| tip           | pin 2         |
+| ring          | pin 3         | 
 
 ## 📐 Mathematical Model & Logical Transparency
 
