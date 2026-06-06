@@ -6,7 +6,7 @@ This project functions as a clone of the **GrayLink** cable, using an Arduino Na
 
 ---
 
-## 📐 Mathematical Model & Logical Transparency
+## Mathematical Model & Logical Transparency
 
 To prevent data corruption during large FLASH ROM dumps or application transfers, we must manipulate the hardware serial core constraints.
 
@@ -32,19 +32,19 @@ By setting the buffer size to $256$ ($2^8$), any value of $I$ that increments pa
 
 ---
 
-## 🛠️ Mandatory Local Pre-Compilation Steps
+## Mandatory Local Pre-Compilation Steps
 
 Before clicking **Upload** in the Arduino IDE, you must modify your local compiler files:
 
 1. Open your file explorer and locate the file: `HardwareSerial.h`
    *(Usually found under: `C:\Users\<Username>\AppData\Local\Arduino15\packages\arduino\hardware\avr\<version>\cores\arduino\HardwareSerial.h`)*
-2. Search for the line containing `#define SERIAL_RX_BUFFER_SIZE 64`.
+2. Search for the line containing `#define SERIAL_RX_BUFFER_SIZE 64` and '#define SERIAL_TX_BUFFER_SIZE 64'.
 3. Change `64` to `256`.
 4. Save the file and restart your Arduino IDE.
 
 ---
 
-## 🔌 Hardware Setup & Physical Layer Constraints
+## Hardware Setup & Physical Layer Constraints
 
 Standard jumper wires loosely wrapped around the audio jack terminal will cause **contact chattering** (microsecond signal drops), causing TiLP to reject the handshake.
 
@@ -58,7 +58,7 @@ Standard jumper wires loosely wrapped around the audio jack terminal will cause 
 
 ---
 
-## 💻 Software Configuration (TiLP)
+## Software Configuration (TiLP)
 
 1. Connect your freshly soldered ArduLink hardware to the TI-89 and your PC.
 2. Launch **TiLP**.
