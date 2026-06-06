@@ -1,4 +1,4 @@
-# ArduLink-TI89
+# ArduLink-TI89 🚀
 
 An Arduino Nano-based hardware emulator designed specifically to connect the classic **Texas Instruments TI-89 (Non-Titanium)** calculator to PC connectivity software such as TiLP.
 
@@ -38,7 +38,7 @@ Before clicking **Upload** in the Arduino IDE, you must modify your local compil
 
 1. Open your file explorer and locate the file: `HardwareSerial.h`
    *(Usually found under: `C:\Users\<Username>\AppData\Local\Arduino15\packages\arduino\hardware\avr\<version>\cores\arduino\HardwareSerial.h`)*
-2. Search for the line containing #define SERIAL_RX_BUFFER_SIZE 64 & #define SERIAL_TX_BUFFER_SIZE 64
+2. Search for the line containing `#define SERIAL_RX_BUFFER_SIZE 64` & `#define SERIAL_TX_BUFFER_SIZE 64`
 3. Change `64` to `256`.
 4. Save the file and restart your Arduino IDE.
 
@@ -56,17 +56,20 @@ Standard jumper wires loosely wrapped around the audio jack terminal will cause 
 * **Arduino Pin D3** $\rightarrow$ Jack RING
 * **Arduino Pin GND** $\rightarrow$ Jack SLEEVE
 
+$\rightarrow$ Visit https://github.com/jw0k/serial2ti83 for more detailed documentation.
+
 ---
 
 ## 🔍 Troubleshooting & Diagnostic Protocol (The ArTICL Test)
 
 If TiLP throws a `Cable Error` or refuses to connect, **do not panic**. You need to isolate whether the fault lies within your software layer or the physical copper connections. Follow this baseline diagnostic test using the **ArTICL library**:
 
-### Metafora Visual: Tes Bel Rumah Mandiri
-Menjalankan TiLP langsung tanpa tes fisik ibarat menebak jalur telepon putus di tengah badai. Menggunakan *library* ArTICL untuk pengujian unit (*unit testing*) bertindak sebagai alat uji bel rumah sederhana. Kita hanya ingin memastikan bahwa saat tombol di kalkulator ditekan, alarm di Arduino merespons instan tanpa intervensi PC.
+### Visual Metaphor: The Do-It-Yourself Doorknob Test
+Running TiLP directly without physical testing is like guessing whether a phone line is down in the middle of a storm. Using the ArTICL library for unit testing acts as a simple doorbell tester. We just want to make sure that when a button on the calculator is pressed, the alarm on the Arduino responds instantly without any PC intervention.
 
 ### Diagnostic Steps:
 1. Download the **ArTICL** library by Christopher Mitchell from GitHub (as a `.zip` file).
+$\rightarrow$ Visit https://github.com/KermMartian/ArTICL
 2. Import it into Arduino IDE: **Sketch** $\rightarrow$ **Include Library** $\rightarrow$ **Add .ZIP Library...**
 3. Open the basic communication sketch: **File** $\rightarrow$ **Examples** $\rightarrow$ **ArTICL** $\rightarrow$ **ControlLED**.
 4. Open the code and uncomment the verbosity toggle to unlock the raw signal lens:
