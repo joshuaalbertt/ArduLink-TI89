@@ -6,7 +6,7 @@ This project functions as a clone of the **GrayLink** cable, using an Arduino Na
 
 ---
 
-## Mathematical Model & Logical Transparency
+## 📐 Mathematical Model & Logical Transparency
 
 To prevent data corruption during large FLASH ROM dumps or application transfers, we must manipulate the hardware serial core constraints.
 
@@ -32,19 +32,19 @@ By setting the buffer size to $256$ ($2^8$), any value of $I$ that increments pa
 
 ---
 
-## Mandatory Local Pre-Compilation Steps
+## 🛠️ Mandatory Local Pre-Compilation Steps
 
 Before clicking **Upload** in the Arduino IDE, you must modify your local compiler files:
 
 1. Open your file explorer and locate the file: `HardwareSerial.h`
    *(Usually found under: `C:\Users\<Username>\AppData\Local\Arduino15\packages\arduino\hardware\avr\<version>\cores\arduino\HardwareSerial.h`)*
-2. Search for the line containing `#define SERIAL_RX_BUFFER_SIZE 64` and '#define SERIAL_TX_BUFFER_SIZE 64'.
+2. Search for the line containing #define SERIAL_RX_BUFFER_SIZE 256 & #define SERIAL_TX_BUFFER_SIZE 256
 3. Change `64` to `256`.
 4. Save the file and restart your Arduino IDE.
 
 ---
 
-## Hardware Setup & Physical Layer Constraints
+## 🔌 Hardware Setup & Physical Layer Constraints
 
 Standard jumper wires loosely wrapped around the audio jack terminal will cause **contact chattering** (microsecond signal drops), causing TiLP to reject the handshake.
 
@@ -58,7 +58,36 @@ Standard jumper wires loosely wrapped around the audio jack terminal will cause 
 
 ---
 
-## Software Configuration (TiLP)
+## 🔍 Troubleshooting & Diagnostic Protocol (The ArTICL Test)
+
+If TiLP throws a `Cable Error` or refuses to connect, **do not panic**. You need to isolate whether the fault lies within your software layer or the physical copper connections. Follow this baseline diagnostic test using the **ArTICL library**:
+
+### Metafora Visual: Tes Bel Rumah Mandiri
+Menjalankan TiLP langsung tanpa tes fisik ibarat menebak jalur telepon putus di tengah badai. Menggunakan *library* ArTICL untuk pengujian unit (*unit testing*) bertindak sebagai alat uji bel rumah sederhana. Kita hanya ingin memastikan bahwa saat tombol di kalkulator ditekan, alarm di Arduino merespons instan tanpa intervensi PC.
+
+### Diagnostic Steps:
+1. Download the **ArTICL** library by Christopher Mitchell from GitHub (as a `.zip` file).
+2. Import it into Arduino IDE: **Sketch** $\rightarrow$ **Include Library** $\rightarrow$ **Add .ZIP Library...**
+3. Open the basic communication sketch: **File** $\rightarrow$ **Examples** $\rightarrow$ **ArTICL** $\rightarrow$ **ControlLED**.
+4. Open the code and uncomment the verbosity toggle to unlock the raw signal lens:
+   `cbl.setVerbosity(true, &Serial);`
+5. Upload the code and open the **Serial Monitor** at **9600 baud**.
+
+### Log Interpretation & Boundary Conditions:
+Observe the terminal behavior during the *idle state* (when no buttons are pressed) to pinpoint your physical wiring condition:
+
+* **Case 1: Screen floods violently with `died waiting for bit ack 0` or freezes at `code -6` / `Not Connected`**
+  $$\text{Condition: } \quad \text{digitalRead}(2) == \text{LOW} \quad \lor \quad \text{digitalRead}(3) == \text{LOW}$$
+  * *Diagnosis:* Permanent short circuit. Your exposed copper strands are touching each other or leaking to the GND sleeve. Cut any loose ties, unwrap the tape, and separate the raw wires to clear the bus.
+* **Case 2: Screen stays dead silent, but running a `Send` command on the TI-89 triggers nothing**
+  $$\text{Condition: } \quad \forall t, \quad V_{D2} \equiv 5\text{V} \quad \land \quad V_{D3} \equiv 5\text{V}$$
+  * *Diagnosis:* Open circuit (broken line). Your wires are floating because they aren't making actual mechanical contact with the jack terminals. Pressing down on the wires with your hands or resoldering will drop the contact resistance back to zero ($R_{\text{contact}} \equiv 0$), immediately triggering valid byte streams (`Got byte 0, 2, 68...`).
+
+Once the Serial Monitor falls into a perfect **silent idle state**, and reacts **only** when the TI-89 transmits data, your physical hardware layer is officially certified. You can now safely flash the main `serial2ti89.ino` firmware.
+
+---
+
+## 💻 Software Configuration (TiLP)
 
 1. Connect your freshly soldered ArduLink hardware to the TI-89 and your PC.
 2. Launch **TiLP**.
