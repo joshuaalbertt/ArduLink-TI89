@@ -5,6 +5,7 @@ An Arduino Nano-based hardware emulator designed specifically to connect the cla
 This project functions as a clone of the **GrayLink** cable, using an Arduino Nano to handle the translation layer natively without requiring the obsolete DB9 serial port.
 
 Source Code $\rightarrow$ https://github.com/jw0k/serial2ti83/blob/master/serial2ti83.ino
+
 Source Code Optimization (Me + Claude, haha) $\rightarrow$ `ti_link_bridge.ino`
 
 ---
