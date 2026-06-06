@@ -38,7 +38,7 @@ Before clicking **Upload** in the Arduino IDE, you must modify your local compil
 
 1. Open your file explorer and locate the file: `HardwareSerial.h`
    *(Usually found under: `C:\Users\<Username>\AppData\Local\Arduino15\packages\arduino\hardware\avr\<version>\cores\arduino\HardwareSerial.h`)*
-2. Search for the line containing #define SERIAL_RX_BUFFER_SIZE 256 & #define SERIAL_TX_BUFFER_SIZE 256
+2. Search for the line containing #define SERIAL_RX_BUFFER_SIZE 64 & #define SERIAL_TX_BUFFER_SIZE 64
 3. Change `64` to `256`.
 4. Save the file and restart your Arduino IDE.
 
