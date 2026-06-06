@@ -10,7 +10,22 @@ This project functions as a clone of the **GrayLink** cable, using an Arduino Na
 |:-------------:|:-------------:|
 | sleeve        | GND pin       |
 | tip           | pin 2         |
-| ring          | pin 3         | 
+| ring          | pin 3         |
+
+---
+
+_Optional_: before uploading `serial2ti83.ino` it is recommended to increase the size of hardware serial buffers to make the connection more reliable. Open `HardwareSerial.h` from you Arduino installation folder (usually `C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino`) and change these 2 lines:
+
+    #define SERIAL_TX_BUFFER_SIZE 64
+    #define SERIAL_RX_BUFFER_SIZE 64
+
+to:
+
+    #define SERIAL_TX_BUFFER_SIZE 256
+    #define SERIAL_RX_BUFFER_SIZE 256
+
+---
+
 
 ## 📐 Mathematical Model & Logical Transparency
 
